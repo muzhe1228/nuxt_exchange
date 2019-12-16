@@ -1,0 +1,31 @@
+{
+  "name": "nuxt_exchange",
+  "version": "1.0.0",
+  "description": "nuxt 服务端渲染",
+  "author": "muzhe1228",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "iview": "^3.1.5",
+    "nuxt": "^2.0.0",
+    "trader-view": "^1.1.3"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "vue-jest": "^4.0.0-0",
+    "webpack-merge": "^4.2.2"
+  }
+}

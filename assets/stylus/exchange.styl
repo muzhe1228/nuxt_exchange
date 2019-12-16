@@ -1,0 +1,100 @@
+@import './variable.styl';
+.exchange {
+    margin-top: 48px;
+    background-color: $mainBg;
+    padding: 8px 0;
+    &_top {
+        height: 780px;
+        display: flex;
+        &_left {
+            width: 300px;
+            background-color: $higMainBg;
+            padding-left: 16px;
+            margin-right: 8px;
+            .left_head {
+                padding: 8px 8px 8px 0;
+            }
+            .quotes {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 28px;
+                span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 22px;
+                    padding: 0 4px;
+                    border-radius: 2px;
+                    color: #b0b8db;
+                    cursor: pointer;
+                    &.fav {
+                        padding-left: 0;
+                    }
+                    &.active {
+                        background-color: #357ce1;
+                        color: #fff;
+                    }
+                }
+            }
+            .actions {
+                display: flex;
+                justify-content: space-between;
+                margin: 8px 0;
+                font-size: 14px;
+                &_inp {
+                    height: 26px;
+                }
+                .upper {
+                    color: $mainColor;
+                    &_icon {
+                        padding-right: 6px;
+                    }
+                }
+            }
+            .list {
+                width: 100%;
+                padding-right: 8px;
+                &_head, &_single {
+                    display: flex;
+                    height: 26px;
+                    align-items: center;
+                    li {
+                        flex: 1;
+                        text-align: right;
+                        &:first-child {
+                            text-align: left;
+                        }
+                    }
+                }
+                &_single {
+                    color: $higColor;
+                    .coin {
+                        &_collect {
+                            margin-right: 3px;
+                            font-size: 15px;
+                            &.active {
+                                color: $checkColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &_right {
+            flex: 1;
+            background-color: $mainBg;
+            display: flex;
+            .left {
+                flex: 1;
+                margin-right: 8px;
+                background-color: $higMainBg;
+            }
+            // 1720
+            .right {
+                background-color: $higMainBg;
+                width: 330px;
+            }
+        }
+    }
+}

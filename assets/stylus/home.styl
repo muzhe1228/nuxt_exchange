@@ -1,0 +1,76 @@
+.home {
+    &_search {
+        height: 64px;
+        width: 100%;
+        background-color: #000923;
+    }
+    &_coin {
+        width: 100%;
+        height: 121px;
+        background-color: #000923;
+        border-top: 1px solid hsla(0, 0%, 100%, 0.15);
+        color: #9eb5ca;
+        .coinList {
+            width: 100%;
+            display: flex;
+            margin: 0 8px;
+            li {
+                flex: 1;
+                padding: 18px 24px;
+                height: 120px;
+                position: relative;
+                transition: all 0.2s;
+                &:first-of-type {
+                    border-left: none;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    border-left: 1px solid hsla(0, 0%, 100%, 0.15);
+                    right: -1px;
+                    top: 18px;
+                    bottom: 18px;
+                }
+                a {
+                    color: inherit;
+                }
+                dt {
+                    color: #b0b8db;
+                    font-size: 14px;
+                    line-height: 14px;
+                    height: 14px;
+                }
+                dd {
+                    margin-top: 16px;
+                    font-size: 16px;
+                    &.price {
+                        font-size: 20px;
+                        line-height: 20px;
+                        color: #d2d6ec;
+                        em {
+                            color: #b0b8db;
+                            line-height: 12px;
+                            font-size: 12px;
+                        }
+                    }
+                    &.vol {
+                        font-size: 12px;
+                        line-height: 12px;
+                        color: #61698a;
+                    }
+                    &.rate {
+                        position: absolute;
+                        top: 18px;
+                        right: 24px;
+                        font-weight: 500;
+                        margin: 0;
+                        line-height: 1;
+                        &.down {
+                            color: #ef5656;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
