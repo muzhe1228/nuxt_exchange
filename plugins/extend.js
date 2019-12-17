@@ -1,8 +1,4 @@
 import Vue from "vue";
-import iView from "iview";
-import locale from "iview/dist/locale/zh-CN"; // Change locale, check node_modules/iview/dist/locale
-import "./iview-ui.less";
-
 import http from "common/Api";
 import {
   addEvent,
@@ -12,10 +8,8 @@ import {
   lStore,
   sStore
 } from "common/utli";
-Vue.use(iView, {
-  locale
-});
-
+import md5 from "md5";
+console.log(666666666666666666666666666666666666666666666666666666666666)
 function ScrollTop(anim = true) {
   if (anim) {
     let scrollToptimer = setInterval(function() {
@@ -51,6 +45,7 @@ function timerHandle(self) {
   self.sendBtnText = num + "S后重新获取";
 }
 
+
 // amount(num){
 //     if(num<1000){
 
@@ -64,6 +59,7 @@ Vue.prototype.$http = http;
 Vue.prototype.$EventListener = EventListener({});
 Vue.prototype.$addEvent = addEvent;
 Vue.prototype.$removeEvent = removeEvent;
+Vue.prototype.$md5 = md5;
 Vue.prototype.$timeSet = timerHandle;
 Vue.prototype.STATUS = 200;
 Vue.directive("debounce", {

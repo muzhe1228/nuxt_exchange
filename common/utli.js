@@ -254,12 +254,16 @@ Store.prototype = {
     this.store().clear();
   }
 };
-const lStore = new Store().init({
-  type: window.localStorage
-});
-const sStore = new Store().init({
-  type: window.sessionStorage
-});
+const lStore = process.client
+  ? new Store().init({
+      type: window.localStorage
+    })
+  : null;
+const sStore = process.client
+  ? new Store().init({
+      type: window.sessionStorage
+    })
+  : null;
 
 //正常化日期
 function normalDate(oDate) {
@@ -747,7 +751,7 @@ function IsPC() {
 }
 
 function sendIosAnd() {
-  if (IsPC() || (!lStore.get("market"))) {
+  if (IsPC() || !lStore.get("market")) {
     return;
   } else {
     if (isIos()) {

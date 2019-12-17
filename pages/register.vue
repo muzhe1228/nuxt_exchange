@@ -1,25 +1,42 @@
 <template>
   <div class="login">
     <div class="login_wrap">
-      <div class="login_title">欢迎登录</div>
+      <div class="login_title">注册账号</div>
       <div class="inp_group">
         <input
           id="login_name"
           @focus="focusInp('name',true)"
           @blur="focusInp('name',false)"
           type="text"
+          v-model="registerData.email"
         />
-        <label for="login_name" :class="name&&'active'" class="inp_label">账号</label>
+        <label for="login_name" :class="(name||registerData.email)&&'active'" class="inp_label">账号</label>
       </div>
       <div class="inp_group">
         <input
-          id="password"
+          id="pwdFoc"
           @focus="focusInp('pwdFoc',true)"
           @blur="focusInp('pwdFoc',false)"
           maxlength="20"
           type="text"
+          v-model="registerData.login_pwd"
         />
-        <label for="password" :class="pwdFoc&&'active'" class="inp_label">密码</label>
+        <label for="pwdFoc" :class="(pwdFoc||registerData.login_pwd)&&'active'" class="inp_label">密码</label>
+      </div>
+      <div class="inp_group">
+        <input
+          id="againPwdFoc"
+          @focus="focusInp('againPwdFoc',true)"
+          @blur="focusInp('againPwdFoc',false)"
+          maxlength="20"
+          type="text"
+          v-model="again_pwd"
+        />
+        <label
+          for="againPwdFoc"
+          :class="(againPwdFoc||again_pwd)&&'active'"
+          class="inp_label"
+        >再次确认密码</label>
       </div>
       <div class="inp_group ImgCode">
         <input
@@ -28,27 +45,38 @@
           @blur="focusInp('code',false)"
           maxlength="20"
           type="text"
+          v-model="registerData.captcha_code"
         />
-        <label for="code" :class="code&&'active'" class="inp_label">验证码</label>
+        <label for="code" :class="(code||registerData.captcha_code)&&'active'" class="inp_label">验证码</label>
         <p @click="getImageCode" class="codeImg">
           <img :src="codeData.value" alt />
         </p>
       </div>
       <p class="forget">忘记密码?</p>
-      <button class="login_btn">登录</button>
+      <button class="login_btn" @click="postRegister">注册</button>
     </div>
   </div>
 </template>
 
 <script>
-import { getImageCode } from "common/http-req";
+import { getImageCode, postRegister } from "common/http-req";
 export default {
   data() {
     return {
       name: false,
       pwdFoc: false,
+      againPwdFoc: false,
       code: false,
-      codeData: {}
+      codeData: {},
+      again_pwd: null,
+      registerData: {
+        mobile: "17620800222",
+        email: null,
+        captcha_code: null,
+        login_pwd: null,
+        // again_pwd: null,
+        id: null
+      }
     };
   },
   components: {},
@@ -60,10 +88,19 @@ export default {
       this[check] = bol;
       console.log(this[check]);
     },
+    postRegister() {
+      postRegister(this.registerData).then(res => {
+        console.log(res);
+        if (res.code == 0) {
+          this.$Message.success("恭喜你注册成功,请前往注册邮箱激活!");
+        }
+      });
+    },
     getImageCode() {
       getImageCode()
         .then(res => {
           this.codeData = res.data;
+          this.registerData.id = res.data.id;
           this.$lStore.set("codeImg", res.data);
         })
         .catch(err => {
@@ -82,7 +119,7 @@ export default {
   background-color: #242e47;
   &_wrap {
     width: 500px;
-    height: 420px;
+    height: 500px;
     background-color: #fff;
     border-radius: 4px;
     margin: 0 auto;

@@ -1,11 +1,10 @@
 import axios from "axios";
 import { lStore } from "../utli";
-import router from "../../router";
-import Store from "../../Store";
+// import router from "../../router";
+// import Store from "../../Store";
 import ENV from "./ENV";
-import { Toast } from "vant";
+// import { Toast } from "vant";
 const baseApi = ENV.getENV().httpApi;
-const market = ENV.getENV().market;
 
 // // 添加请求拦截器
 // axios.interceptors.request.use(function (config) {
@@ -33,9 +32,7 @@ axios.interceptors.response.use(
 const comFunc = function(options) {
   let params = options.data ? options.data : "",
     headers = {
-      market: lStore.get("market") || "PC",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + (lStore.get("token") || "")
+      "Content-Type": "application/json"
     },
     axiosData = {
       headers: headers,
@@ -59,7 +56,6 @@ const notLogin = function(res) {
   if (res.status == 401 || res.status == 403) {
     Toast("登录失效，请重新登录");
     Store.commit("SET_USERINFO", "");
-    lStore.remove("token");
     router.push("/login");
   } else if (res.status == 500) {
     console.log(res);
@@ -73,7 +69,6 @@ const http = function(options) {
       .then(response => {
         if (response.status === 200) {
           let res = response.data;
-          console.log(res, options.url);
           resolve(res);
         } else {
           reject(response);

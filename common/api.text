@@ -1,0 +1,15 @@
+邮箱注册
+http://192.168.0.114:8080/api/dev/v1/user/register    POST
+
+{
+	"mobile":"xxx",
+	"email":"xxx",
+	"captcha_code":"xxx"
+	"id":"验证码ID"
+}
+
+验证码: 返回base64
+
+http://192.168.0.114:8080/api/dev/v1/captcha/generateCaptcha?captchaType=digit  GET
+
+captchaType: digit | chainese |string  对应生成验证码类型为：数字|中文|字符
