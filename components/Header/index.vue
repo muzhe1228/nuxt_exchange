@@ -13,6 +13,7 @@
     </div>
     <div class="header_right">
       <nuxt-link to="/login">登录</nuxt-link>
+      <nuxt-link to="/register">注册</nuxt-link>
     </div>
   </header>
 </template>

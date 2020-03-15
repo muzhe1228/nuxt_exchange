@@ -49,7 +49,7 @@
         />
         <label for="code" :class="(code||registerData.captcha_code)&&'active'" class="inp_label">验证码</label>
         <p @click="getImageCode" class="codeImg">
-          <img :src="codeData.value" alt />
+          <img :src="codeData.value" alt="加载失败" />
         </p>
       </div>
       <p class="forget">忘记密码?</p>
